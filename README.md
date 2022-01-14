@@ -8,6 +8,8 @@ A quick and easy way to make typing "m/" in your web browser bring you to Gmail,
 
 Add as many short domains to your Tailnet as you wish. Generate a reusable key in your [Tailscale admin settings](https://login.tailscale.com/admin/settings/keys) and provide it to as many containers as you want. Each will get its own Tailnet IP address and get added into your Tailscale MagicDNS using the hostname provided as an environment variable.
 
+Note: Don't publish your Tailscale keys... the one below has been modified and the original verison was revoked :)
+
 ```sh
 #!/bin/sh
 
