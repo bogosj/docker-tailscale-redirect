@@ -1,6 +1,7 @@
-FROM golang:1.17 AS builder
+FROM golang:1.18-alpine AS builder
 ARG TS_VERSION
 WORKDIR /tmp
+RUN apk add git
 RUN git clone https://github.com/bogosj/301
 RUN cd 301 && CGO_ENABLED=0 GOOS=linux go build -v -a -installsuffix cgo -o 301 *.go
 RUN cd /tmp && wget https://pkgs.tailscale.com/stable/tailscale_${TS_VERSION}_amd64.tgz && tar xzvf tailscale_${TS_VERSION}_amd64.tgz
