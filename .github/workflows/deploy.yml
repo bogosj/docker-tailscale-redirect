@@ -1,0 +1,19 @@
+name: Deploy new version
+
+on: 
+  workflow_dispatch:
+    inputs:
+      TS_VERSION:
+        description: 'Tailscale Version Number'     
+        required: true
+        
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Deploy image
+      run: |
+        echo ${{ secrets.CR_PAT }} | docker login ghcr.io -u ${{ secrets.CR_USERNAME }} --password-stdin
+        TS_VERSION=${{ github.event.inputs.TS_VERSION }} make deploy
